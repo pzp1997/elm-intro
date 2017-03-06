@@ -1,39 +1,49 @@
+module Main exposing (..)
+
 import Html exposing (Html, div, input, text)
 import Html.Events exposing (onInput)
 import String
 
+
 main =
-  Html.beginnerProgram { model = model, view = view, update = update }
+    Html.beginnerProgram { model = model, view = view, update = update }
+
 
 
 -- MODEL
 
+
 type alias Model =
-  { content : String }
+    { content : String }
+
 
 model : Model
 model =
-  { content = "" }
+    { content = "" }
+
 
 
 -- UPDATE
 
-type Msg =
-  Change String
+
+type Msg
+    = Change String
+
 
 update : Msg -> Model -> Model
 update msg model =
     case msg of
-      Change newContent ->
-        { model | content = newContent }
+        Change newContent ->
+            { model | content = newContent }
+
 
 
 -- VIEW
 
+
 view : Model -> Html Msg
 view model =
     div []
-    [
-    input [ onInput Change ] []
-    , div [] [ text (String.reverse model.content )]
-    ]
+        [ input [ onInput Change ] []
+        , div [] [ text (String.reverse model.content) ]
+        ]
